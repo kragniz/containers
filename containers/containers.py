@@ -27,6 +27,8 @@ def simple_discovery(path, var=None, secure=True):
 
     urlretrieve(url, local_file)
 
+    return local_file
+
 
 class AppContainer(object):
     def __init__(self, path=None):
