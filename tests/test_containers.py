@@ -8,12 +8,21 @@ try:
 except ImportError:
     from SocketServer import TCPServer
 
+import glob
 import os
+import sys
 import threading
 import unittest
-import glob, os
 
 import containers
+
+
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    string_types = str,
+else:
+    string_types = basestring,
 
 PORT = 8080
 
@@ -35,9 +44,20 @@ class TestDiscovery(unittest.TestCase):
         for f in filelist:
             os.remove(f)
 
+    def test_get_returns_string(self):
+        c = containers.simple_discovery(
+            'localhost:8080/tests/etc/etcd-v2.0.0-linux-amd64',
+            var='/tmp', secure=False)
+
+        self.assertTrue(isinstance(c, string_types))
+
     def test_get_etcd(self):
-        containers.simple_discovery('localhost:8080/tests/etc/etcd-v2.0.0-linux-amd64',
-                                    var='/tmp', secure=False)
+        c = containers.simple_discovery(
+            'localhost:8080/tests/etc/etcd-v2.0.0-linux-amd64',
+            var='/tmp', secure=False)
+
+        self.assertTrue(os.path.isfile(os.path.join('/tmp', c)))
+
 
 
 if __name__ == '__main__':
