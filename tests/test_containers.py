@@ -11,6 +11,7 @@ except ImportError:
 import os
 import threading
 import unittest
+import glob, os
 
 import containers
 
@@ -28,6 +29,11 @@ httpd_thread.start()
 
 
 class TestDiscovery(unittest.TestCase):
+
+    def tearDown(self):
+        filelist = glob.glob('/tmp/*.aci')
+        for f in filelist:
+            os.remove(f)
 
     def test_get_etcd(self):
         containers.simple_discovery('localhost:8080/tests/etc/etcd-v2.0.0-linux-amd64',
