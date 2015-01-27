@@ -12,7 +12,7 @@ import os
 import threading
 import unittest
 
-from containers import containers
+import containers
 
 PORT = 8080
 
