@@ -27,7 +27,7 @@ def simple_discovery(name, var=None, secure=True):
     else:
         protocol = 'http'
 
-    url = '{protocol}://{path}.aci'.format(path=path, protocol=protocol)
+    url = '{protocol}://{name}.aci'.format(name=name, protocol=protocol)
 
     parsed = urlparse(url)
     _, local_file = os.path.split(parsed.path)
