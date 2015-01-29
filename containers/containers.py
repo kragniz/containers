@@ -11,7 +11,17 @@ except ImportError:
 import os
 
 
-def simple_discovery(path, var=None, secure=True):
+def simple_discovery(name, var=None, secure=True):
+    '''Perform simple discovery and save the discovered ACI locally.
+
+    :param name: Name of app.
+    :type name: str.
+    :param var: Directory to save app to.
+    :type var: str.
+    :param secure: Choose to use HTTPS or HTTP.
+    :type secure: bool.
+    :returns:  str -- the name of the ACI.
+    '''
     if secure:
         protocol = 'https'
     else:
