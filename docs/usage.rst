@@ -1,7 +1,9 @@
-========
+=====
 Usage
-========
+=====
 
-To use containers in a project::
 
-    import containers
+Containers module
+-----------------
+
+.. autofunction:: containers.simple_discovery
