@@ -12,4 +12,7 @@ containers
         :target: https://pypi.python.org/pypi/containers
 
 
-Containers is a python module to easily manipulate app containers.
+Containers is a python module to easily manipulate app containers conforming to
+the `App Container Specification
+<http://rocket.readthedocs.org/en/latest/app-container/SPEC/>`_. At the time of
+writing, this is version 0.2.0.
