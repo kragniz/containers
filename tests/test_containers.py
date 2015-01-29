@@ -26,6 +26,7 @@ else:
 
 PORT = 8080
 
+
 class TestServer(TCPServer):
     allow_reuse_address = True
 
@@ -57,7 +58,6 @@ class TestDiscovery(unittest.TestCase):
             var='/tmp', secure=False)
 
         self.assertTrue(os.path.isfile(os.path.join('/tmp', c)))
-
 
 
 if __name__ == '__main__':
