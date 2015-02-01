@@ -24,7 +24,7 @@ if PY3:
 else:
     string_types = basestring,
 
-PORT = 8080
+PORT = 3456
 
 
 class TestServer(TCPServer):
