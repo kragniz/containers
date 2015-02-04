@@ -45,19 +45,23 @@ class TestDiscovery(unittest.TestCase):
         for f in filelist:
             os.remove(f)
 
-    def test_get_returns_string(self):
+    def test_simple_get_returns_string(self):
         c = containers.simple_discovery(
             'localhost:8080/tests/etc/etcd-v2.0.0-linux-amd64',
             var='/tmp', secure=False)
 
         self.assertTrue(isinstance(c, string_types))
 
-    def test_get_etcd(self):
+    def test_simple_get_etcd(self):
         c = containers.simple_discovery(
             'localhost:8080/tests/etc/etcd-v2.0.0-linux-amd64',
             var='/tmp', secure=False)
 
-        self.assertTrue(os.path.isfile(os.path.join('/tmp', c)))
+        self.assertTrue(os.path.isfile(c))
+
+    def test_simple_nonexistant(self):
+        containers.simple_discovery('localhost:8080/does_not_exist',
+                                    var='/tmp', secure=False)
 
 
 if __name__ == '__main__':
