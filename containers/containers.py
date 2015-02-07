@@ -1,14 +1,20 @@
 try:
-    from urllib import urlretrieve
-except ImportError:
-    from urllib.request import urlretrieve
-
-try:
     from urlparse import urlparse
 except ImportError:
     from urllib.parse import urlparse
 
 import os
+
+import requests
+
+
+def save_url(url, filename):
+    r = requests.get(url, stream=True)
+    with open(filename, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024):
+            if chunk:
+                f.write(chunk)
+                f.flush()
 
 
 def simple_discovery(name, var=None, secure=True):
@@ -35,7 +41,7 @@ def simple_discovery(name, var=None, secure=True):
     if var is not None:
         local_file = os.path.join(var, local_file)
 
-    urlretrieve(url, local_file)
+    save_url(url, local_file)
 
     return local_file
 
