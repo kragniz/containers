@@ -10,11 +10,15 @@ import requests
 
 def save_url(url, filename):
     r = requests.get(url, stream=True)
-    with open(filename, 'wb') as f:
-        for chunk in r.iter_content(chunk_size=1024):
-            if chunk:
-                f.write(chunk)
-                f.flush()
+    if r.status_code == requests.codes.ok:
+        with open(filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:
+                    f.write(chunk)
+                    f.flush()
+    else:
+        raise IOError('HTTP GET on {url} failed with error '
+                      '{code}.'.format(url=url, code=r.status_code))
 
 
 def simple_discovery(name, var=None, secure=True):
