@@ -60,7 +60,7 @@ class TestDiscovery(unittest.TestCase):
         self.assertTrue(os.path.isfile(c))
 
     def test_simple_nonexistant(self):
-        with self.assertRaises(IOError):
+        with self.assertRaises(containers.exceptions.DiscoveryError):
             containers.simple_discovery('localhost:3456/does_not_exist',
                                         var='/tmp', secure=False)
 

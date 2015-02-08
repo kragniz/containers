@@ -7,6 +7,8 @@ import os
 
 import requests
 
+from . import exceptions
+
 
 def save_url(url, filename):
     r = requests.get(url, stream=True)
@@ -45,7 +47,10 @@ def simple_discovery(name, var=None, secure=True):
     if var is not None:
         local_file = os.path.join(var, local_file)
 
-    save_url(url, local_file)
+    try:
+        save_url(url, local_file)
+    except IOError as e:
+        raise exceptions.DiscoveryError(str(e))
 
     return local_file
 
