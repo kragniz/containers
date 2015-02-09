@@ -28,7 +28,7 @@ def simple_discovery(name, var=None, secure=True):
 
     :param name: Name of app.
     :type name: str.
-    :param var: Directory to save app to.
+    :param var: Directory to save ACI to.
     :type var: str.
     :param secure: Choose to use HTTPS or HTTP.
     :type secure: bool.
