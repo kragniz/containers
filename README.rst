@@ -14,5 +14,4 @@ containers
 
 Containers is a python module to easily manipulate app containers conforming to
 the `App Container Specification
-<http://rocket.readthedocs.org/en/latest/app-container/SPEC/>`_. At the time of
-writing, this is version 0.2.0.
+<http://rocket.readthedocs.org/en/latest/app-container/SPEC/>`_ version 0.3.0.
